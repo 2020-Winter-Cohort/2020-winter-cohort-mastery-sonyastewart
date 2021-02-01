@@ -2,6 +2,7 @@ package com.survivingcodingbootcamp.blog.controller;
 
 import com.survivingcodingbootcamp.blog.model.Post;
 import com.survivingcodingbootcamp.blog.storage.PostStorage;
+import com.survivingcodingbootcamp.blog.storage.TopicStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
@@ -22,7 +23,8 @@ public class PostControllerTest {
     @BeforeEach
     void setUp() {
         PostStorage postStorage = mock(PostStorage.class);
-        underTest = new PostController(postStorage);
+        TopicStorage topicStorage = mock(TopicStorage.class);
+        underTest = new PostController(postStorage, topicStorage);
         model = mock(Model.class);
         testPost = mock(Post.class);
         when(postStorage.retrievePostById(1L)).thenReturn(testPost);

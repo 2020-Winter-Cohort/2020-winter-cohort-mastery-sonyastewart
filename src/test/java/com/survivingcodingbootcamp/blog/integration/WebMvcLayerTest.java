@@ -2,6 +2,7 @@ package com.survivingcodingbootcamp.blog.integration;
 
 import com.survivingcodingbootcamp.blog.model.Post;
 import com.survivingcodingbootcamp.blog.model.Topic;
+import com.survivingcodingbootcamp.blog.storage.HashtagStorage;
 import com.survivingcodingbootcamp.blog.storage.PostStorage;
 import com.survivingcodingbootcamp.blog.storage.TopicStorage;
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,8 @@ public class WebMvcLayerTest {
     private TopicStorage topicStorage;
     @MockBean
     private PostStorage postStorage;
+    @MockBean
+    private HashtagStorage hashtagStorage;
 
     @Test
     public void shouldReceiveOKAndViewOfHomeTemplateFromHomeEndpoint() throws Exception {
@@ -47,7 +50,7 @@ public class WebMvcLayerTest {
     @Test
     public void shouldReceiveOkAndViewOfPostTemplateFromSinglePostEndpoint() throws Exception {
         Topic testTopic = new Topic("Test Topic");
-        Post testPost = new Post("Test Post", testTopic, "Sample content.");
+        Post testPost = new Post("Test Post", testTopic, "Sample content.", "Sample Author");
         when(postStorage.retrievePostById(1L)).thenReturn(testPost);
         mockMvc.perform(get("/posts/1"))
                 .andDo(print())
