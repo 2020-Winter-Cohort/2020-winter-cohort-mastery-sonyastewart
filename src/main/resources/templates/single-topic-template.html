@@ -31,6 +31,23 @@
                 </div>
             </nav>
         </section>
+        <div>
+            <fieldset class="formBox">
+                <form action="/posts/addPost" method="POST">
+                    <legend> Write a new Post</legend>
+                    <input type="hidden" id="topicId" name="topicId" th:value="${topic.id}"><br>
+                    <label>Title</label>
+                    <input type="text" id="title" name="title"><br>
+                    <label>By:</label>
+                    <input type="text" id="author" name="author"><br>
+                    <label>Content</label>
+                    <textarea name="content" id="textarea" rows="10" cols="52" wrap="hard">
+                </textarea><br>
+                    <button type="submit">Submit New Post</button>
+                </form>
+            </fieldset>
+
+        </div>
     </main>
 </div>
 </body>

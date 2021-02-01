@@ -18,6 +18,10 @@ public class Topic {
     protected Topic() {
     }
 
+    public void addPostToTopic(Post addedPost){
+        posts.add(addedPost);
+    }
+
     public Topic(String name) {
         this.name = name;
     }

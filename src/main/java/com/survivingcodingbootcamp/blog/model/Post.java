@@ -23,6 +23,9 @@ public class Post {
 
     }
 
+    public Post(String title, Topic topic, String author, String content, String hashtag) {
+    }
+
     public Collection<Hashtag> getHashtags() {
         return hashtags;
     }
@@ -94,6 +97,7 @@ public class Post {
         result = 31 * result + (author != null ? author.hashCode() : 0);
         return result;
     }
-
-
+    public void addPostToTopic(Post addedPost){
+        topic.addPostToTopic(addedPost);
+    }
 }

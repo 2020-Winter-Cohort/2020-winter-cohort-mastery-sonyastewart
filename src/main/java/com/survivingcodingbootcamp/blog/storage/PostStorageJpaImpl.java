@@ -38,4 +38,5 @@ public class PostStorageJpaImpl implements PostStorage {
         save(newPost);
 
     }
+
 }

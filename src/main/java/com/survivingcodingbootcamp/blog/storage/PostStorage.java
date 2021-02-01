@@ -11,4 +11,6 @@ public interface PostStorage {
     void save(Post postToAdd);
 
     void addHashtagToPost(long id, Hashtag hashtagToAdd);
+
+
 }
