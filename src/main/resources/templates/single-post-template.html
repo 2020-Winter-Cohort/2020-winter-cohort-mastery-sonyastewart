@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,28 +8,45 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/layout.css" />
 </head>
-
 <body>
-    <div class="container">
-        <header class="header">
-            <h1 class="header__title">Surviving Coding Boot Camp</h1>
-            <nav class="header__nav">
-                <div class="header__nav-item"><a href="/" class="header__nav-link">Home</a></div>
-                <div class="header__nav-item"><a href="/hashtags" class="header__nav-link">Hashtags</a></div>
-            </nav>
-        </header>
-        <main class="main-content">
-            <section class="main-content__post post">
-                <h3 class="post__topic-title main-content__topic-title"><a th:text="${post.topic.name}" th:href="'/topics/'+${post.topic.id}" class="main-content__topic-link post__topic-link">Topic</a>
-                    </h3>
-                <h2 th:text="${post.title}" class="post__title main-content__topic-title">Post Title</h2>
-                <p th:text="${post.content}" class="post__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis, aut quae fuga id quis ut. 
-                    Eligendi necessitatibus blanditiis officia, odio deleniti natus molestiae fugiat ex quod vel aliquam illum.
-                </p>
-            </section>
-        </main>
-    </div>
-
+<div class="container">
+    <header class="header">
+        <h1 class="header__title">Surviving Coding Boot Camp</h1>
+        <nav class="header__nav">
+            <div class="header__nav-item"><a href="/" class="header__nav-link">Home</a></div>
+            <div class="header__nav-item"><a href="/hashtags" class="header__nav-link">Hashtags</a></div>
+        </nav>
+    </header>
+    <main class="main-content">
+        <section class="main-content__post post">
+            <h3 class="post__topic-title main-content__topic-title"><a th:text="${post.topic.name}" th:href="'/topics/'+${post.topic.id}" class="main-content__topic-link post__topic-link">Topic</a>
+            </h3>
+            <h2 th:text="${post.title}" class="post__title main-content__topic-title">Post Title</h2>
+            <p th:text="${post.content}" class="post__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis, aut quae fuga id quis ut.
+                Eligendi necessitatibus blanditiis officia, odio deleniti natus molestiae fugiat ex quod vel aliquam illum.
+            </p>
+            <h2 th:text="${post.author}" class="post__author">Post Author</h2>
+            <h2 th:each="hashtag: ${post.hashtags}">
+                <a th:text="${hashtag.name}" th:href=" '/hashtags/' + ${hashtag.id}"> Hashtag</a>
+            </h2>
+        </section>
+        <div>
+            <form action="/hashtags/addHashtag" method="POST">
+                <label> Add Hashtag to Post</label>
+                <input type="text" id="newHashtag" name="newHashtag">
+                <input type="hidden" id="postId" name="postId" th:value="${post.id}"><br>
+                <button type="submit">Add Hashtag</button>
+            </form>
+        </div>
+        <div>-->
+            <form action="/addPost/{id}" method="POST">
+                <label> Write a new Post</label>
+                <input type="text" id="newPost" name="newPost">
+                <input type="hidden" id="newPostId" name="postId" th:value="${id}"><br>
+                <button type="submit">Submit New Post</button>
+            </form>
+        </div>
+    </main>
+</div>
 </body>
-
 </html>
